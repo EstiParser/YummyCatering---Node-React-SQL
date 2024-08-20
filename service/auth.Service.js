@@ -13,9 +13,9 @@ const login = async (email, password) => {
     if (!validPassword) {
         throw new Error('Invalid email or password.');
     }
-
+    const userRole = user.role;
     const token = jwt.sign({ _id: user._id, role: user.role }, TOKEN_SECRET, { expiresIn: '1h' });
-    return token;
+    return {token, userRole};
 };
 
 const register = async (name, password, email, role) => {

@@ -1,5 +1,4 @@
 const orderService = require('../Service/orders.service');
-// Add Order - למשתמש רגיל
 
 const addOrder = async (req, res) => {
     try {
@@ -24,10 +23,6 @@ const updateOrder = async (req, res) => {
     }
 };
 
-
-
-// Delete Order - מנהל בלבד
-
 const deleteOrder = async (req, res) => {
     try {
         const orderPhone = req.params.phone;
@@ -42,7 +37,6 @@ const deleteOrder = async (req, res) => {
     }
 };
 
-// Get Orders - מנהל בלבד
 const getOrders = async (req, res) => {
     try {
         const orders = await orderService.getOrders();

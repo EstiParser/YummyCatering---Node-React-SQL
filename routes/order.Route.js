@@ -246,10 +246,9 @@ router.use(authenticateToken);
  *                 error:
  *                   type: string
  */
-router.post('/addOrder',authorizeRole('user'),orderContoller.addOrder);//OK!
-router.put('/updateOrder/:phone',authorizeRole('Reminds'),orderContoller.updateOrder);//OK!
-router.delete('/deleteOrder/:phone',authorizeRole('Reminds'),orderContoller.deleteOrder);//OK!
-router.get('/getOrders',authorizeRole('admin'),orderContoller.getOrders);//OK!
-
+router.post('/addOrder',authorizeRole('user'),orderContoller.addOrder);
+router.put('/updateOrder/:phone',authorizeRole('Reminds'),orderContoller.updateOrder);
+router.delete('/deleteOrder/:phone',authorizeRole('Reminds'),orderContoller.deleteOrder);
+router.get('/getOrders',authorizeRole('admin'),orderContoller.getOrders);
 
 module.exports = router;

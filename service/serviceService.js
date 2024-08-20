@@ -1,13 +1,10 @@
 
 const Service = require('../models/Service');
 
-//מנהל
 const getServices = async () => {
     const servicec = await Service.find();
     return servicec;
 };
-
-
 
 const addService = async (serviceData) => {
     const newService = new Service(serviceData);
@@ -18,7 +15,7 @@ const addService = async (serviceData) => {
 const deleteService = async (phone) => {
     const deletedService = await Service.findOneAndDelete({ phone });
     return deletedService;
-}
+};
 
 const updateService = async (phone, data) => {
     const updatedService = await Service.findOneAndUpdate(
@@ -28,7 +25,6 @@ const updateService = async (phone, data) => {
     );
     return updatedService;
 };
-
 
 module.exports = {
     getServices,

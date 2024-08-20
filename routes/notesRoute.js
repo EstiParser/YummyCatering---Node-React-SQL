@@ -94,7 +94,7 @@ router.use(authenticateToken);
  *                 error:
  *                   type: string
  */
-router.get('/getNotes',authorizeRole('Reminds'),notesController.getNotes);//OK
-router.post('/addNote',authorizeRole('user'),notesController.addNote);//OK!
+router.get('/getNotes',authorizeRole('Reminds'),notesController.getNotes);
+router.post('/addNote',authorizeRole('user'),notesController.addNote);
 
 module.exports = router;

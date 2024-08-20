@@ -41,9 +41,6 @@ router.use(authenticateToken);
  *                 error:
  *                   type: string
  */
-
-
-router.get('/getUsers',authorizeRole('admin'),usersController.getUsers);//OK!
-
+router.get('/getUsers',authorizeRole('admin'),usersController.getUsers);
 
 module.exports = router;

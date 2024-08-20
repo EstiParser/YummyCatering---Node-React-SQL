@@ -7,4 +7,3 @@ const BusinessDetailsSchema = new mongoose.Schema({
     businessPhone: String,
   });
   module.exports = mongoose.model('BusinessDetails', BusinessDetailsSchema);
-  

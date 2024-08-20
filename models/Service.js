@@ -6,10 +6,6 @@ const ServiceSchema = new mongoose.Schema({
       services: ["wedding", "Bar Mitzvah", "engagement", "Bat mitzva", 'alliance']
     },
     description: String,
-    price: Number,
-    //phone: Number,
-    // duration: String,
+    price: Number
   });
   module.exports = mongoose.model('Service', ServiceSchema);
-  
-

@@ -7,6 +7,7 @@ const businessRoute = require('./routes/business.Route');
 const noteRoute = require('./routes/notesRoute');
 const orderRoute = require('./routes/order.Route');
 const userRoute = require('./routes/userRoute');
+const serviceRouter = require('./routes/serviceRoute');
 const cors = require('cors');
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsdoc = require('swagger-jsdoc');
@@ -30,7 +31,6 @@ db.once('open', () => {
   console.log('Connected to MongoDB!');
 });
 
-// הגדרת Swagger
 const swaggerOptions = {
   swaggerDefinition: {
     openapi: '3.0.0',
@@ -68,7 +68,7 @@ const swaggerOptions = {
 const swaggerDocs = swaggerJsdoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
-// הוספת ה-Routes שלך
+app.use('/service',serviceRouter);
 app.use('/auth', authRout);
 app.use('/business', businessRoute);
 app.use('/notes', noteRoute);

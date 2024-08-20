@@ -6,4 +6,3 @@ const NotesSchema = new mongoose.Schema({
     notes: String,
   });
   module.exports = mongoose.model('Notes', NotesSchema );
-  

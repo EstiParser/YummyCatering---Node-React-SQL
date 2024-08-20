@@ -67,8 +67,7 @@ const authController = require('../Controllres/authController');
  *         description: Error occurred during registration
  */
 
-
-router.post('/login',authController.login);//OK
-router.post('/register',authController.register);//OK!
+router.post('/login',authController.login);
+router.post('/register',authController.register);
 
 module.exports = router;

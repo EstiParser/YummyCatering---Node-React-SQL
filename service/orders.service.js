@@ -6,7 +6,6 @@ const addOrder = async (orderData) => {
     return newOrder;
 };
 
-
 const updateOrder = async (orderPhone, data) => {
     const updatedOrder = await Orders.findOneAndUpdate(
         { phone: orderPhone },
@@ -30,4 +29,4 @@ module.exports = {
     updateOrder,
     deleteOrder,
     getOrders
-}
+};

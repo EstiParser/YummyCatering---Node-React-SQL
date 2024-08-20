@@ -4,7 +4,6 @@ const { authenticateToken,authorizeRole } = require('../midlleware/authAdmin&Use
 const besinessDetailsController  = require('../Controllres/BusinessDetails.Controller');
 router.use(authenticateToken);
 
-
 /**
  * @swagger
  * /business/updateDetails:
@@ -92,14 +91,7 @@ router.use(authenticateToken);
  *                   type: string
  */
 
-router.put('/updateDetails',authorizeRole('admin'),besinessDetailsController.updateDetails);//OK!
-router.get('/getDetails',authorizeRole('user'),besinessDetailsController.getDetails);//OK!
+router.put('/updateDetails',authorizeRole('admin'),besinessDetailsController.updateDetails);
+router.get('/getDetails',authorizeRole('user'),besinessDetailsController.getDetails);
 
 module.exports = router;
-
-
-
-
-
-
-

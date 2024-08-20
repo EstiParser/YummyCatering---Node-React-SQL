@@ -2,13 +2,8 @@ const jwt = require('jsonwebtoken');
 const TOKEN_SECRET = 'your_jwt_secret_key';
 
 function authenticateToken(req, res, next) {
-    console.log("Authentication middleware triggered");
-    
     const authHeader = req.headers['authorization'];
-    const token = authHeader && authHeader.split(' ')[1]; // Extract the token from the 'Bearer <token>' format
-
-    console.log("Authorization header:", authHeader);
-    console.log("Token received:", token);
+    const token = authHeader && authHeader.split(' ')[1];
 
     if (!token) {
         console.log("No token provided");
@@ -16,7 +11,7 @@ function authenticateToken(req, res, next) {
     }
 
     try {
-        const decoded = jwt.verify(token, TOKEN_SECRET); 
+        const decoded = jwt.verify(token, TOKEN_SECRET);
         req.user = decoded;
         console.log("Token decoded:", decoded);
         next();

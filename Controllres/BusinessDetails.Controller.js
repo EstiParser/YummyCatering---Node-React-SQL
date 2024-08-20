@@ -4,7 +4,6 @@ const updateDetails = async (req, res) => {
     try {
         const update = req.body;
         const email = req.body.email;
-        console.log(update);
 
         const updatedDetails = await businessDetailsService.updateDetails(email, update);
         if (updatedDetails) {

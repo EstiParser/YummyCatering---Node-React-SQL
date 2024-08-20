@@ -3,8 +3,8 @@ const authService = require('../Service/auth.Service');
 const login = async (req, res) => {
     const { email, password } = req.body;
     try {
-        const token = await authService.login(email, password);
-        res.header("auth-token", token).send({ token });
+        const {token , userRole} = await authService.login(email, password);
+        res.header("auth-token", token).send({ token, userRole });
     } catch (error) {
         res.status(400).json({ message: error.message });
     }

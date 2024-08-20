@@ -9,8 +9,6 @@ const getServices= async (req, res) => {
     }
 };
 
-
-
 const addService = async (req, res) => {
     try {
         const newService = await serviceService.addService(req.body);
@@ -53,5 +51,4 @@ module.exports = {
     addService,
     deleteService,
     updateService
-    
 };
