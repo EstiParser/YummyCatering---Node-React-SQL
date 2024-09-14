@@ -2,21 +2,25 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const authRout = require('./routes/auth.Route');
+const cors = require('cors');
+const swaggerUi = require('swagger-ui-express');
+const swaggerJsdoc = require('swagger-jsdoc');
+
+const authRoute = require('./routes/auth.Route');
 const businessRoute = require('./routes/business.Route');
 const noteRoute = require('./routes/notesRoute');
 const orderRoute = require('./routes/order.Route');
 const userRoute = require('./routes/userRoute');
 const serviceRouter = require('./routes/serviceRoute');
-const cors = require('cors');
-const swaggerUi = require('swagger-ui-express');
-const swaggerJsdoc = require('swagger-jsdoc');
+const emailRoutes = require('./routes/emailRoutes');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
 const port = 3001;
+const path = require('path');
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 const mongoURI = 'mongodb://localhost:27017/YummyCatering';
 mongoose.set('strictQuery', false);
@@ -68,15 +72,15 @@ const swaggerOptions = {
 const swaggerDocs = swaggerJsdoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
-app.use('/service',serviceRouter);
-app.use('/auth', authRout);
+app.use('/service', serviceRouter);
+app.use('/auth', authRoute);
 app.use('/business', businessRoute);
 app.use('/notes', noteRoute);
 app.use('/order', orderRoute);
-app.use('/users',userRoute);
+app.use('/users', userRoute);
 app.use('/api/users', userRoute);
-app.use('/api/auth', authRout);
-
+app.use('/api/auth', authRoute);
+app.use('/api', emailRoutes);
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });

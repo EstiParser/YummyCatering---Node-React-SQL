@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { authenticateToken,authorizeRole } = require('../midlleware/authAdmin&User');
+const { authenticateToken,authorizeRole } = require('../middleware/authAdmin&User');
 const notesController = require('../Controllres/notes.Controller');
 
 router.use(authenticateToken);
@@ -94,7 +94,8 @@ router.use(authenticateToken);
  *                 error:
  *                   type: string
  */
-router.get('/getNotes',authorizeRole('Reminds'),notesController.getNotes);
-router.post('/addNote',authorizeRole('user'),notesController.addNote);
+router.get('/get',authorizeRole('admin'),notesController.getNotes);
+router.post('/add',authorizeRole('user'),notesController.addNote);
+router.delete('/delete',authorizeRole('admin'),notesController.deleteNote);
 
 module.exports = router;

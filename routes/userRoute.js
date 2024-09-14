@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const { authenticateToken,authorizeRole } = require('../midlleware/authAdmin&User');
+const { authenticateToken,authorizeRole } = require('../middleware/authAdmin&User');
 
 const usersController = require('../Controllres/users.Controller');
-router.use(authenticateToken);
 
 /**
  * @swagger
@@ -41,6 +40,10 @@ router.use(authenticateToken);
  *                 error:
  *                   type: string
  */
-router.get('/getUsers',authorizeRole('admin'),usersController.getUsers);
+router.get('/get',authenticateToken,authorizeRole('admin'),usersController.getUsers);
+router.get('/get/:email',authenticateToken,authorizeRole('admin','user'),usersController.getUserByEmail);
+router.delete('/delete/:email',authenticateToken,authorizeRole('admin'),usersController.deleteUsers);
+router.put('/update/:recipientEmail',usersController.updateUserPassword);
+router.put('/updateDetails/:recipientEmail',authenticateToken,authorizeRole('admin'), usersController.updateUserDetails);
 
 module.exports = router;

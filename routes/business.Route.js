@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { authenticateToken,authorizeRole } = require('../midlleware/authAdmin&User');
+const { authenticateToken,authorizeRole } = require('../middleware/authAdmin&User');
 const besinessDetailsController  = require('../Controllres/BusinessDetails.Controller');
 router.use(authenticateToken);
 
@@ -91,7 +91,7 @@ router.use(authenticateToken);
  *                   type: string
  */
 
-router.put('/updateDetails',authorizeRole('admin'),besinessDetailsController.updateDetails);
-router.get('/getDetails',authorizeRole('user'),besinessDetailsController.getDetails);
+router.put('/update',authorizeRole('admin'),besinessDetailsController.updateDetails);
+router.get('/get',authorizeRole('user','admin'),besinessDetailsController.getDetails);
 
 module.exports = router;

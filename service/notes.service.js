@@ -11,7 +11,13 @@ const addNote = async (noteData) => {
     return note;
 };
 
+const deleteNote = async (note)=>{
+    const result = Notes.deleteOne(note);
+    return result;
+}
+
 module.exports = {
     getNotes,
-    addNote
+    addNote,
+    deleteNote
 };

@@ -31,5 +31,4 @@ module.exports = {
     addService,
     deleteService,
     updateService
-
 };

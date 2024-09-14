@@ -1,6 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const { authenticateToken,authorizeRole } = require('../midlleware/authAdmin&User');
+const upload = require('../middleware/multer');
+const app = express();
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+const { authenticateToken,authorizeRole } = require('../middleware/authAdmin&User');
 
 const orderContoller  = require('../Controllres/orders.Controller');
 router.use(authenticateToken);
@@ -246,9 +251,10 @@ router.use(authenticateToken);
  *                 error:
  *                   type: string
  */
-router.post('/addOrder',authorizeRole('user'),orderContoller.addOrder);
-router.put('/updateOrder/:phone',authorizeRole('Reminds'),orderContoller.updateOrder);
-router.delete('/deleteOrder/:phone',authorizeRole('Reminds'),orderContoller.deleteOrder);
-router.get('/getOrders',authorizeRole('admin'),orderContoller.getOrders);
+router.post('/add',upload.single('file'),authorizeRole('user','admin'),orderContoller.addOrder);
+router.put('/update/:phone',authorizeRole('admin'),orderContoller.updateOrder);
+router.delete('/delete/:email',authorizeRole('admin'),orderContoller.deleteOrder);
+router.get('/get/:email',authorizeRole('admin','user'),orderContoller.getOrders);
+router.get('/get',authorizeRole('admin'),orderContoller.getOrders);
 
 module.exports = router;

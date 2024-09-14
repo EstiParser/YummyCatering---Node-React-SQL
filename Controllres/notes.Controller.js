@@ -18,7 +18,22 @@ const addNote = async (req, res) => {
     }
 };
 
+const deleteNote = async (req, res) => {
+    try {
+        const result = await notesService.deleteNote(req.body);
+
+        if (result.deletedCount === 0) {
+            return res.status(404).json({ message: 'Note not found' });
+        }
+        
+        res.status(200).json({ message: 'The note has been successfully deleted' });
+    } catch (error) {
+        res.status(500).json({ message: 'Error deleting note', error });
+    }
+}
+
 module.exports = {
     getNotes,
-    addNote
+    addNote,
+    deleteNote
 };
